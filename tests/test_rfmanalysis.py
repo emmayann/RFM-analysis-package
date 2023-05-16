@@ -9,17 +9,30 @@ from rfmanalysis import rfmanalysis
 
 
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
+analysis = RFMAnalysis(data,  'customer_id', 'order_date', 'revenue')
 
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+# Create RFM columns
+analysis.create_rfm_columns()
 
+# Scale RFM columns
+analysis.scale_rfm_columns()
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+# Calculate RFM scores and segments
+analysis.rfm_scores()
+
+# Give names to the RFM segments
+analysis.give_names_to_segments()
+
+# Get the distribution of RFM segments
+segment_distribution = analysis.segments_distribution()
+print(segment_distribution)
+visualizer = RFMVisualizer()
+# Create an instance of RFMVisualizer
+visualizer.plot_rfm(analysis.rfm_data)
+visualizer.visualize_segments(analysis.rfm_data)
+visualizer.segment_distribution_barplot(analysis.rfm_data)
+visualizer.segment_boxplot(analysis.rfm_data)
+
+# Assuming you have the RFM data in a variable named 'rfm_data'
+#visualizer.segment_piechart(analysis.rfm_data)
+visualizer.segment_comparison(analysis.rfm_data)
