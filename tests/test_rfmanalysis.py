@@ -2,10 +2,11 @@
 
 """Tests for `rfmanalysis` package."""
 
-import pytest
+#import pytest
 
 
 from rfmanalysis import rfmanalysis
+
 
 
 @pytest.fixture
